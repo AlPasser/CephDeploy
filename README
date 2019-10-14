@@ -1,0 +1,3 @@
+Ceph Preflight.sh：准备 Ceph 集群的机器
+Ceph Storage Cluster Quick Start.sh：安装 Ceph 集群
+Ceph K8s.sh：K8s 挂载 Ceph 集群
