@@ -1,0 +1,5 @@
+nginx:alpine 镜像在 nginx.tar 中
+
+docker build -t harbor.oceanai.com.cn/k8s_ceph/getpvcdata:xxxxxx ./
+
+kubectl apply -f get-pvc-data.yaml

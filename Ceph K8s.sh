@@ -137,11 +137,11 @@ kubectl create secret generic ceph-user-secret --type="kubernetes.io/rbd" \
 kubectl get secret ceph-user-secret -o yaml
 kubectl get secret ceph-secret -n kube-system -o yaml
 # sc
-cat >storageclass-ceph-rdb.yaml<<EOF
+cat >storageclass-ceph-rbd.yaml<<EOF
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-  name: dynamic-ceph-rdb
+  name: dynamic-ceph-rbd
 provisioner: ceph.com/rbd
 # provisioner: kubernetes.io/rbd
 parameters:
@@ -156,25 +156,25 @@ parameters:
   imageFormat: "2"
   imageFeatures: "layering"
 EOF
-kubectl apply -f storageclass-ceph-rdb.yaml
+kubectl apply -f storageclass-ceph-rbd.yaml
 kubectl get sc
 
 # 测试使用
 # pvc
-cat >ceph-rdb-pvc-test.yaml<<EOF
+cat >ceph-rbd-pvc-test.yaml<<EOF
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: ceph-rdb-claim
+  name: ceph-rbd-claim
 spec:
   accessModes:     
     - ReadWriteOnce
-  storageClassName: dynamic-ceph-rdb
+  storageClassName: dynamic-ceph-rbd
   resources:
     requests:
       storage: 2Gi
 EOF
-kubectl apply -f ceph-rdb-pvc-test.yaml
+kubectl apply -f ceph-rbd-pvc-test.yaml
 kubectl get pvc
 kubectl get pv
 # nginx pod 挂载测试
@@ -193,23 +193,24 @@ spec:
     - name: web
       containerPort: 80
     volumeMounts:
-    - name: ceph-rdb
+    - name: ceph-rbd
       mountPath: /usr/share/nginx/html
   volumes:
-  - name: ceph-rdb
+  - name: ceph-rbd
     persistentVolumeClaim:
-      claimName: ceph-rdb-claim
+      claimName: ceph-rbd-claim
   nodeSelector:
     ceph-osd: ceph-osd
 EOF
-# 暂时先只放在 lable "ceph-osd: ceph-osd" 的机子上（ceph node，装有 osd），还未测试放其他节点上是否会有问题
+# 暂时先只放在 lable "ceph-osd: ceph-osd" 的机子上（ceph node，装有 osd），还未测试放其他节点上是否会有问题（更新：已测，在其他节点上也无问题）
 kubectl apply -f nginx-pod.yaml
 kubectl get pods -o wide
 kubectl exec -ti nginx-pod1 -- /bin/sh -c 'echo Hello World from Ceph RBD!!! > /usr/share/nginx/html/index.html'
 POD_ID=$(kubectl get pods -o wide | grep nginx-pod1 | awk '{print $(6)}')
 curl http://$POD_ID
 kubectl delete -f nginx-pod.yaml
-kubectl delete -f ceph-rdb-pvc-test.yaml
+kubectl delete -f ceph-rbd-pvc-test.yaml
+# 注意：kubectl delete -f ceph-rbd-pvc-test.yaml 会删除数据
 
 # 问题解决
 # 1、-1 auth: unable to find a keyring on /etc/ceph/ceph.client.kube.keyring,/etc/ceph/ceph.keyring,/etc/ceph/keyring,/etc/ceph/keyring.bin,: (2) No such file or directory
@@ -220,5 +221,9 @@ kubectl delete -f ceph-rdb-pvc-test.yaml
 sudo ceph osd crush tunables legacy
 sudo ceph osd crush reweight-all
 # 也可以将 kernel 升级到 4.5 以上来解决此问题
+
+# 以上的 k8s ceph rbd 所持久化的数据目前只能在 k8s Pod 中查看，查看方法见 get_pvc_data 文件夹
+
+
 
 
