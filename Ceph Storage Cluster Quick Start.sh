@@ -86,7 +86,8 @@ sudo ceph osd pool application enable kube rbd
 # straw_calc_version: A value of 0 preserves the old, broken internal weight calculation; a value of 1 fixes the behavior.
 # kernel version 在 4.5 以下时，straw_calc_version 要为 0，否则会出问题
 # 3. mon cloudxxx is low on available space
-# 先 destroy mon，再 add mon，暂不知其原理
+# 目录 / 下的空间不足
+# 先 destroy mon，再 add mon（该方法无用）
 ceph-deploy mon destroy cloudxxx
 ceph-deploy mon add cloudxxx
 # mon add 的时候可能会卡住，且此时 sudo ceph -s 也会卡住（0 monclient(hunting): authenticate timed out after 300）
@@ -118,7 +119,7 @@ sudo ceph osd pool delete mytest mytest –yes-i-really-really-mean-it
 
 # Purge the Ceph packages, and erase all its data and configuration
 # 先删 osd
-# 使用 part 的话需要：sudo bash -c "rm /etc/lvm/archive/ceph*"
+# 使用 part 的话需要先删掉 ceph vg，再：sudo bash -c "rm /etc/lvm/archive/ceph*"
 # 使用 lv 的话需要先删掉原有 lv 然后再创建它，否则下次加不进 osd
 ceph-deploy purge {ceph-node} [{ceph-node}]
 ceph-deploy purgedata {ceph-node} [{ceph-node}]

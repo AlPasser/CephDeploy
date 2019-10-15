@@ -105,7 +105,7 @@ spec:
         ceph-osd: ceph-osd
 EOF
 # 以上 docker 镜像 save 在 rbd-provisioner.tar 中
-# rbd-provisioner 暂时先只放在 lable "ceph-osd: ceph-osd" 的机子上（ceph node，装有 osd），还未测试放其他节点上是否会有问题
+# rbd-provisioner 暂时先只放在 lable "ceph-osd: ceph-osd" 的机子上（ceph node，装有 osd），还未测试放其他节点上是否会有问题（更新：理论推断是会有问题的）
 kubectl apply -f external-storage-rbd-provisioner.yaml
 kubectl get pod -n kube-system
 
