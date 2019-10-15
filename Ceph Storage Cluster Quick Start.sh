@@ -61,18 +61,39 @@ ceph-deploy admin cloud08 cloud-XIII cloud04
 ceph-deploy mgr create cloud08
 
 # Add three OSDs
-# 在每个节点上创建 part/lv/vg 来存储数据
+# 在每个节点上创建 part/vg/lv 来存储数据
 # 参考链接：https://www.linuxidc.com/Linux/2016-06/132475.htm
 # 参考链接：https://blog.csdn.net/u012291393/article/details/78636456
 # 参考链接：https://blog.csdn.net/weixin_43228740/article/details/85340675
+# 注意：若为了 umount 而删除了 /etc/fstab 中的某行，那么最后需要手动加回去，否则无法开机自动 mount。
+# /etc/fstab 中的一行如下
+/dev/vg_data/lv_data    /data    ext4    defaults    0    0
 # ceph-deploy osd create --data {device} {ceph-node}
 ceph-deploy osd create --data /dev/sdb1 cloud08
 ceph-deploy osd create --data /dev/sda2 cloud-XIII
 ceph-deploy osd create --data /dev/vg_data/lv_ceph cloud04
+# 如果某个 osd 无法创建（Unable to create a new OSD id），那么要先移除那个节点(清理数据),最后再把该节点加进集群。
 
 # Check your cluster’s health
 ssh node1 sudo ceph health
+ssh node1 sudo ceph health detail
 ssh node1 sudo ceph -s
+# 以下为 HEALTH_WARN 警告
+# 1. application not enabled on 1 pool(s)
+# sudo ceph osd pool application enable <pool-name> <app-name>
+sudo ceph osd pool application enable kube rbd
+# 2. crush map has straw_calc_version=0
+# straw_calc_version: A value of 0 preserves the old, broken internal weight calculation; a value of 1 fixes the behavior.
+# kernel version 在 4.5 以下时，straw_calc_version 要为 0，否则会出问题
+# 3. mon cloudxxx is low on available space
+# 先 destroy mon，再 add mon，暂不知其原理
+ceph-deploy mon destroy cloudxxx
+ceph-deploy mon add cloudxxx
+# mon add 的时候可能会卡住，且此时 sudo ceph -s 也会卡住（0 monclient(hunting): authenticate timed out after 300）
+# 原因可能是没配 ceph.conf 中的 mon_host，mon_host 要写上所有的 mon，如
+mon_host = 192.168.1.8,192.168.1.13,192.168.1.4
+# 然后再将修改后的 ceph.conf 推送到各个节点
+ceph-deploy --overwrite-conf config push cloud08 cloud04 cloud-XIII
 
 # To store object data in the Ceph Storage Cluster, a Ceph client must:
 # 1. Set an object name
@@ -96,10 +117,20 @@ sudo systemctl restart ceph-mon.target
 sudo ceph osd pool delete mytest mytest –yes-i-really-really-mean-it
 
 # Purge the Ceph packages, and erase all its data and configuration
+# 先删 osd
+# 使用 part 的话需要：sudo bash -c "rm /etc/lvm/archive/ceph*"
+# 使用 lv 的话需要先删掉原有 lv 然后再创建它，否则下次加不进 osd
 ceph-deploy purge {ceph-node} [{ceph-node}]
 ceph-deploy purgedata {ceph-node} [{ceph-node}]
 ceph-deploy forgetkeys
 rm ceph.*
+# 手动深度删除该节点上的相关文件与目录
+# 查找相关文件：
+sudo bash -c "find / -name '*ceph*'"
+# 删除如：
+sudo bash -c "rm /etc/systemd/system/*ceph* -rf"
+sudo bash -c "rm /var/lib/systemd/deb-systemd-helper-enabled/*ceph* -rf"
+
 
 
 

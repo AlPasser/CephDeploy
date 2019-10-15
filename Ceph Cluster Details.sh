@@ -10,6 +10,7 @@ ceph-deploy mon add cloud04 cloud-XIII
 public network = 192.168.1.0/24
 # 将修改后的 ceph.conf 推送到各个节点
 ceph-deploy --overwrite-conf config push cloud08 cloud04 cloud-XIII
+# 如果出现 mon add 成功但一直无法加入 quorum 的情形（由人工误操作导致），那么要先移除那个节点(清理数据),最后再把该节点加进集群。
 
 # Once you have added your new Ceph Monitors, Ceph will begin synchronizing the monitors and form a quorum.
 # Check the quorum status
