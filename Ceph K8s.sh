@@ -216,6 +216,8 @@ kubectl delete -f ceph-rbd-pvc-test.yaml
 # 1、-1 auth: unable to find a keyring on /etc/ceph/ceph.client.kube.keyring,/etc/ceph/ceph.keyring,/etc/ceph/keyring,/etc/ceph/keyring.bin,: (2) No such file or directory
 # 这是没找到秘钥，需要将 ceph.client.kube.keyring 文件复制到 rbd-provisioner 所在机器的 /etc/ceph/ 目录下
 # 尽管已经创建了 k8s secret 但还是要这样做，这很奇怪，网上有些人说不用，但没怎么看懂，留给以后研究
+# 在链接 https://itzg.github.io/2018/05/24/setting-up-kubernetes-on-a-budget-with-ceph-volumes.html 中表示需要这么做
+ssh xxx sudo ceph auth get client.kube -o /etc/ceph/ceph.client.kube.keyring
 # 2、rbd: map failed exit status 110, ...
 # 在 ceph 的 admin node 上执行
 sudo ceph osd crush tunables legacy
