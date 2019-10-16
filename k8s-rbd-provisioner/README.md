@@ -17,6 +17,8 @@ PROVISIONER_NAME：
         - name: PROVISIONER_NAME
           value: ceph.com/rbd
 
+镜像有缓存（因过大未上传）
+
 #### storageclass-ceph-rbd.yaml
 
 注意更改：monitors
