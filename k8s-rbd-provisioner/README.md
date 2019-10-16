@@ -1,6 +1,6 @@
 [参考链接](https://www.jianshu.com/p/750a8fde377b?tdsourcetag=s_pctim_aiomsg)
 
-#### external-storage-rbd-provisioner.yaml
+### external-storage-rbd-provisioner.yaml
 
 命名空间：
 
@@ -19,7 +19,7 @@ PROVISIONER_NAME：
 
 镜像有缓存（因过大未上传）
 
-#### storageclass-ceph-rbd.yaml
+### storageclass-ceph-rbd.yaml
 
 注意更改：monitors
 
@@ -28,7 +28,7 @@ name：
     metadata:
         name: dynamic-ceph-rbd
 
-#### ceph-rbd-pvc-test.yaml
+### ceph-rbd-pvc-test.yaml
 
 用作测试
 
