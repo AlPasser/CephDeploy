@@ -2,20 +2,20 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    app: ceph-exporter
-  name: ceph-exporter
+    app: ceph-exporter-cloud08
+  name: ceph-exporter-cloud08
   namespace: monitoring
   #ownerReferences:
   #- apiVersion: extensions/v1beta1
   #  blockOwnerDeletion: true
   #  controller: true
   #  kind: DaemonSet
-  #  name: ceph-exporter
+  #  name: ceph-exporter-cloud08
 spec:
   containers:
   - image: harbor.oceanai.com.cn/k8s_ceph/ceph_exporter:191016
     imagePullPolicy: IfNotPresent
-    name: ceph-exporter
+    name: ceph-exporter-cloud08
     resources:
       limits:
         cpu: 100m
@@ -27,9 +27,9 @@ spec:
     - mountPath: /etc/ceph
       name: ceph-conf
   hostNetwork: true
-  nodeName: cloud08   #Ceph宿主机的ip
+  nodeName: cloud08   # Ceph 宿主机
   nodeSelector:
-    kubernetes.io/hostname: cloud08  #Ceph宿主机的ip
+    kubernetes.io/hostname: cloud08  # Ceph 宿主机
   restartPolicy: Always
   serviceAccount: default
   serviceAccountName: default
@@ -49,8 +49,8 @@ metadata:
     component: "node-exporter"
     heritage: Tiller
     release: monitor
-    k8s-app: ceph-exporter
-  name: ceph-exporter
+    k8s-app: ceph-exporter-cloud08
+  name: ceph-exporter-cloud08
   namespace: monitoring
 spec:
   clusterIP: None
@@ -60,5 +60,5 @@ spec:
     protocol: TCP
     targetPort: 9128
   selector:
-    app: ceph-exporter
+    app: ceph-exporter-cloud08
   type: ClusterIP

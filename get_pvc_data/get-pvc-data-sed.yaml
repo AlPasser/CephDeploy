@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: get-pvc-data
-    image: harbor.oceanai.com.cn/k8s_ceph/getpvcdata:191014
+    image: harbor.oceanai.com.cn/k8s_ceph/getpvcdata:--version--
     volumeMounts:
     - name: ceph-rbd
       mountPath: /pvc_data
