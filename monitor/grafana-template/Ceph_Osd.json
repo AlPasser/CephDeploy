@@ -799,7 +799,7 @@
         "datasource": null,
         "hide": 0,
         "includeAll": false,
-        "label": "Interval",
+        "label": "interval",
         "multi": false,
         "name": "interval",
         "options": [
@@ -866,8 +866,9 @@
       {
         "allValue": null,
         "current": {
-          "text": "ceph-exporter",
-          "value": "ceph-exporter"
+          "selected": true,
+          "text": "kubernetes-service-endpoints",
+          "value": "kubernetes-service-endpoints"
         },
         "datasource": "oceanai-prometheus",
         "hide": 0,
@@ -875,10 +876,58 @@
         "label": "exporter",
         "multi": false,
         "name": "export",
-        "options": [],
+        "options": [
+          {
+            "selected": true,
+            "text": "kubernetes-service-endpoints",
+            "value": "kubernetes-service-endpoints"
+          }
+        ],
         "query": "label_values(ceph_health_status, job)",
         "refresh": 1,
         "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "cloud04",
+          "value": "192.168.1.4:9128"
+        },
+        "datasource": "oceanai-prometheus",
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "label": "instance",
+        "multi": false,
+        "name": "instance",
+        "options": [
+          {
+            "selected": true,
+            "text": "cloud04",
+            "value": "192.168.1.4:9128"
+          },
+          {
+            "selected": false,
+            "text": "cloud08",
+            "value": "192.168.1.8:9128"
+          },
+          {
+            "selected": false,
+            "text": "cloud-xiii",
+            "value": "192.168.1.13:9128"
+          }
+        ],
+        "query": "label_values(ceph_health_status, job)",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],

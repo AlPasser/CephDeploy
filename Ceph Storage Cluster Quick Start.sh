@@ -118,7 +118,12 @@ sudo systemctl restart ceph-mon.target
 sudo ceph osd pool delete mytest mytest –yes-i-really-really-mean-it
 
 # Purge the Ceph packages, and erase all its data and configuration
-# 先删 osd
+# 先删 osd（如删除 osd.0）
+sudo ceph osd out osd.0
+sudo service ceph stop osd.0
+sudo ceph osd crush remove osd.0
+sudo ceph auth del osd.0
+sudo ceph osd rm 0
 # 使用 part 的话需要先删掉 ceph vg，再：sudo bash -c "rm /etc/lvm/archive/ceph*"
 # 使用 lv 的话需要先删掉原有 lv 然后再创建它，否则下次加不进 osd
 ceph-deploy purge {ceph-node} [{ceph-node}]
