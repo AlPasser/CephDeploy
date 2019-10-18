@@ -112,7 +112,7 @@ sudo ceph osd pool rm mytest
 # pool 不允许被删除时，需在 mon 节点的 /etc/ceph/ceph.conf 文件中添加以下内容
 [mon] 
 mon allow pool delete = true
-# 接着重启 ceph-mon 服务
+# 接着重启 ceph-mon 服务（在所有的 mon 节点上）
 sudo systemctl restart ceph-mon.target
 # 然后执行 pool 的删除命令
 sudo ceph osd pool delete mytest mytest –yes-i-really-really-mean-it
@@ -120,10 +120,11 @@ sudo ceph osd pool delete mytest mytest –yes-i-really-really-mean-it
 # Purge the Ceph packages, and erase all its data and configuration
 # 先删 osd（如删除 osd.0）
 sudo ceph osd out osd.0
-sudo service ceph stop osd.0
+sudo ceph osd down osd.0
+sudo ceph osd rm osd.0
+# 如果还没 down，则到该 osd 机子上运行：sudo systemctl stop ceph-osd@0
 sudo ceph osd crush remove osd.0
 sudo ceph auth del osd.0
-sudo ceph osd rm 0
 # 使用 part 的话需要先删掉 ceph vg，再：sudo bash -c "rm /etc/lvm/archive/ceph*"
 # 使用 lv 的话需要先删掉原有 lv 然后再创建它，否则下次加不进 osd
 ceph-deploy purge {ceph-node} [{ceph-node}]

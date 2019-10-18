@@ -24,8 +24,15 @@ ceph-deploy mgr create cloud-XIII
 # At least 3 Ceph OSDs are normally required for redundancy and high availability.
 # 见 Ceph Storage Cluster Quick Start.sh
 
+# 扩容 OSD
+# 1. lv（如 /dev/mapper/vg_data-lv_ceph）
+sudo lvresize -l <extents-num> /dev/mapper/vg_data-lv_ceph
+# osd 容量并不会自动更新，故先删再添该 osd
+# 如果添加 osd 失败，则先删后添该 lv，然后再重新添加 osd
+# 2. part
+# 先删掉该 osd，再调整 part 大小，然后再添加 osd
 
-
-
-
+# 增加 mds
+# ceph-deploy mds create {ceph-node}
+ceph-deploy mds create oceanai07
 

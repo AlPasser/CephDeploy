@@ -12,6 +12,8 @@ Ceph_Health.sh：维护 Ceph 集群
 
 k8s-rbd-provisioner/：K8s Ceph RBD 挂载
 
+k8s-fs-provisioner/：K8s Ceph FS 挂载
+
 get_pvc_data/：获取 K8s Ceph 挂载的持久化数据
 
 monitor/：Ceph 集群监控

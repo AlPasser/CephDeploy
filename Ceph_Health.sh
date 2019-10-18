@@ -15,6 +15,9 @@ sudo ceph osd pool application enable kube rbd
 # 使用推荐方法
 sudo ceph osd crush tunables optimal
 
+# 3. clock skew detected on mon
+# 检查 mon node 的 ntp 是否开启
+
 # 3. mon cloudxxx is low on available space
 # 目录 / 下的空间不足
 # 先 destroy mon，再 add mon（该方法无用）
