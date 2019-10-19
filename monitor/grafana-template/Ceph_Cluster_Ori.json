@@ -2,14 +2,14 @@
   "annotations": {
     "list": []
   },
-  "description": "Ceph Cluster Overview.",
+  "description": "Ceph Cluster overview.\r\n",
   "editable": true,
   "gnetId": 917,
   "graphTooltip": 0,
   "hideControls": false,
   "id": 20,
   "links": [],
-  "refresh": "30s",
+  "refresh": "1m",
   "rows": [
     {
       "collapse": false,
@@ -24,7 +24,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "none",
@@ -36,7 +36,7 @@
             "thresholdMarkers": true
           },
           "id": 21,
-          "interval": "$interval",
+          "interval": "1m",
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -72,7 +72,7 @@
           },
           "targets": [
             {
-              "expr": "ceph_health_status{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_health_status{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "refId": "A",
@@ -117,7 +117,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "none",
@@ -129,7 +129,7 @@
             "thresholdMarkers": true
           },
           "id": 14,
-          "interval": "$interval",
+          "interval": "1m",
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -165,7 +165,7 @@
           },
           "targets": [
             {
-              "expr": "ceph_monitor_quorum_count{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_monitor_quorum_count{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -196,7 +196,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "none",
@@ -208,7 +208,7 @@
             "thresholdMarkers": true
           },
           "id": 22,
-          "interval": "$interval",
+          "interval": "1m",
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -244,7 +244,7 @@
           },
           "targets": [
             {
-              "expr": "count(ceph_pool_available_bytes{job=\"$export\",instance=\"$instance\"})",
+              "expr": "count(ceph_pool_available_bytes{job=\"$export\"})",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -275,7 +275,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "bytes",
@@ -287,7 +287,7 @@
             "thresholdMarkers": true
           },
           "id": 33,
-          "interval": "$interval",
+          "interval": "1m",
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -323,7 +323,7 @@
           },
           "targets": [
             {
-              "expr": "ceph_cluster_capacity_bytes{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_cluster_capacity_bytes{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -354,7 +354,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "bytes",
@@ -366,7 +366,7 @@
             "thresholdMarkers": true
           },
           "id": 34,
-          "interval": "$interval",
+          "interval": "1m",
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -402,7 +402,7 @@
           },
           "targets": [
             {
-              "expr": "ceph_cluster_used_bytes{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_cluster_used_bytes{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -433,7 +433,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "percentunit",
@@ -445,7 +445,7 @@
             "thresholdMarkers": true
           },
           "id": 23,
-          "interval": "$interval",
+          "interval": "1m",
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -481,7 +481,7 @@
           },
           "targets": [
             {
-              "expr": "ceph_cluster_available_bytes{job=\"$export\",instance=\"$instance\"}/ceph_cluster_capacity_bytes{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_cluster_available_bytes{job=\"$export\"}/ceph_cluster_capacity_bytes{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -508,7 +508,7 @@
       "repeatIteration": null,
       "repeatRowId": null,
       "showTitle": false,
-      "title": "Cluster Overview",
+      "title": "New row",
       "titleSize": "h6"
     },
     {
@@ -524,7 +524,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "none",
@@ -536,7 +536,7 @@
             "thresholdMarkers": true
           },
           "id": 26,
-          "interval": "$interval",
+          "interval": null,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -572,7 +572,7 @@
           },
           "targets": [
             {
-              "expr": "ceph_osds_in{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_osds_in{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -602,7 +602,7 @@
             "rgba(237, 40, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "none",
@@ -614,7 +614,7 @@
             "thresholdMarkers": true
           },
           "id": 27,
-          "interval": "$interval",
+          "interval": null,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -650,7 +650,7 @@
           },
           "targets": [
             {
-              "expr": "ceph_osds - ceph_osds_in{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_osds - ceph_osds_in{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -680,7 +680,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "none",
@@ -692,7 +692,7 @@
             "thresholdMarkers": true
           },
           "id": 28,
-          "interval": "$interval",
+          "interval": null,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -728,7 +728,7 @@
           },
           "targets": [
             {
-              "expr": "sum(ceph_osd_up{job=\"$export\",instance=\"$instance\"})",
+              "expr": "sum(ceph_osd_up{job=\"$export\"})",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -758,7 +758,7 @@
             "rgba(237, 40, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "none",
@@ -770,7 +770,7 @@
             "thresholdMarkers": true
           },
           "id": 29,
-          "interval": "$interval",
+          "interval": null,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -806,7 +806,7 @@
           },
           "targets": [
             {
-              "expr": "ceph_osds_down{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_osds_down{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -836,7 +836,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "none",
@@ -848,7 +848,7 @@
             "thresholdMarkers": true
           },
           "id": 30,
-          "interval": "$interval",
+          "interval": null,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -884,7 +884,7 @@
           },
           "targets": [
             {
-              "expr": "avg(ceph_osd_pgs{job=\"$export\",instance=\"$instance\"})",
+              "expr": "avg(ceph_osd_pgs{job=\"$export\"})",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -914,7 +914,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "s",
@@ -926,7 +926,7 @@
             "thresholdMarkers": true
           },
           "id": 31,
-          "interval": "$interval",
+          "interval": null,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -962,7 +962,7 @@
           },
           "targets": [
             {
-              "expr": "avg(ceph_osd_perf_apply_latency_seconds{job=\"$export\",instance=\"$instance\"})",
+              "expr": "avg(ceph_osd_perf_apply_latency_seconds{job=\"$export\"})",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -992,7 +992,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "s",
@@ -1004,7 +1004,7 @@
             "thresholdMarkers": true
           },
           "id": 32,
-          "interval": "$interval",
+          "interval": null,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -1040,7 +1040,7 @@
           },
           "targets": [
             {
-              "expr": "avg(ceph_osd_perf_commit_latency_seconds{job=\"$export\",instance=\"$instance\"})",
+              "expr": "avg(ceph_osd_perf_commit_latency_seconds{job=\"$export\"})",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -1064,7 +1064,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "s",
@@ -1076,7 +1076,7 @@
             "thresholdMarkers": true
           },
           "id": 24,
-          "interval": "$interval",
+          "interval": "1m",
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -1113,7 +1113,7 @@
           },
           "targets": [
             {
-              "expr": "avg(ceph_monitor_latency_seconds{job=\"$export\",instance=\"$instance\"})",
+              "expr": "avg(ceph_monitor_latency_seconds{job=\"$export\"})",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -1140,7 +1140,7 @@
       "repeatIteration": null,
       "repeatRowId": null,
       "showTitle": false,
-      "title": "OSDs Overview",
+      "title": "New row",
       "titleSize": "h6"
     },
     {
@@ -1157,7 +1157,7 @@
             "total_used": "#890F02"
           },
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "fill": 3,
@@ -1197,7 +1197,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_cluster_available_bytes{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_cluster_available_bytes{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Available",
@@ -1205,7 +1205,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_cluster_used_bytes{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_cluster_used_bytes{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Used",
@@ -1213,7 +1213,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_cluster_capacity_bytes{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_cluster_capacity_bytes{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Total Capacity",
@@ -1266,7 +1266,7 @@
             "total_used": "#890F02"
           },
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "decimals": 0,
           "editable": true,
           "error": false,
@@ -1300,7 +1300,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_client_io_write_ops{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_client_io_write_ops{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Write",
@@ -1308,7 +1308,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_client_io_read_ops{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_client_io_read_ops{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Read",
@@ -1355,7 +1355,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -1387,7 +1387,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_client_io_write_bytes{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_client_io_write_bytes{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Write",
@@ -1395,7 +1395,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_client_io_read_bytes{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_client_io_read_bytes{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Read",
@@ -1454,7 +1454,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -1490,7 +1490,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_cluster_objects{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_cluster_objects{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Total",
@@ -1498,7 +1498,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_degraded_objects{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_degraded_objects{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Degraded",
@@ -1506,7 +1506,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_misplaced_objects{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_misplaced_objects{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Misplaced",
@@ -1553,7 +1553,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -1589,7 +1589,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(ceph_osd_pgs{job=\"$export\",instance=\"$instance\"})",
+              "expr": "sum(ceph_osd_pgs{job=\"$export\"})",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Total",
@@ -1597,7 +1597,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_degraded_pgs{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_degraded_pgs{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Degraded",
@@ -1605,7 +1605,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_stale_pgs{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_stale_pgs{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Stale",
@@ -1613,7 +1613,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_unclean_pgs{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_unclean_pgs{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Unclean",
@@ -1621,7 +1621,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_undersized_pgs{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_undersized_pgs{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Undersized",
@@ -1629,7 +1629,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_stuck_degraded_pgs{job=\"$export\",instance=\"$instance\"}+ ceph_stuck_stale_pgs{job=\"$export\",instance=\"$instance\"} + ceph_stuck_unclean_pgs{job=\"$export\",instance=\"$instance\"} + ceph_stuck_undersized_pgs{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_stuck_degraded_pgs{job=\"$export\"}+ ceph_stuck_stale_pgs{job=\"$export\"} + ceph_stuck_unclean_pgs{job=\"$export\"} + ceph_stuck_undersized_pgs{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Stuck",
@@ -1676,7 +1676,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -1712,7 +1712,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_stuck_degraded_pgs{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_stuck_degraded_pgs{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Degraded",
@@ -1720,7 +1720,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_stuck_stale_pgs{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_stuck_stale_pgs{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Stale",
@@ -1728,7 +1728,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_stuck_unclean_pgs{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_stuck_unclean_pgs{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Unclean",
@@ -1736,7 +1736,7 @@
               "step": 10
             },
             {
-              "expr": "ceph_stuck_undersized_pgs{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_stuck_undersized_pgs{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Undersized",
@@ -1785,7 +1785,7 @@
       "repeatIteration": null,
       "repeatRowId": null,
       "showTitle": false,
-      "title": "PGs",
+      "title": "New row",
       "titleSize": "h6"
     },
     {
@@ -1795,7 +1795,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -1824,7 +1824,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_recovery_io_bytes{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_recovery_io_bytes{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Bytes",
@@ -1871,7 +1871,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -1905,7 +1905,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_recovery_io_keys{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_recovery_io_keys{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Keys",
@@ -1952,7 +1952,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -1986,7 +1986,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_recovery_io_objects{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_recovery_io_objects{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Objects",
@@ -2048,32 +2048,129 @@
   "templating": {
     "list": [
       {
+        "auto": true,
+        "auto_count": 10,
+        "auto_min": "1m",
         "current": {
           "text": "10s",
           "value": "10s"
         },
         "datasource": null,
-        "label": "interval",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Interval",
+        "multi": false,
         "name": "interval",
-        "query": "2s,5s,10s,30s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "options": [
+          {
+            "selected": false,
+            "text": "auto",
+            "value": "$__auto_interval"
+          },
+          {
+            "selected": true,
+            "text": "10s",
+            "value": "10s"
+          },
+          {
+            "selected": false,
+            "text": "30s",
+            "value": "30s"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "14d",
+            "value": "14d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "10s,30s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
         "refresh": 2,
         "type": "interval"
       },
       {
-        "datasource": "oceanai-prometheus",
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "ocata-ceph",
+          "value": "ocata-ceph"
+        },
+        "datasource": "prometheus",
+        "hide": 0,
+        "includeAll": false,
         "label": "exporter",
+        "multi": false,
         "name": "export",
+        "options": [
+          {
+            "selected": true,
+            "text": "ocata-ceph",
+            "value": "ocata-ceph"
+          },
+          {
+            "selected": false,
+            "text": "ocata-ceph-cl",
+            "value": "ocata-ceph-cl"
+          },
+          {
+            "selected": false,
+            "text": "ceph-exporter",
+            "value": "ceph-exporter"
+          }
+        ],
         "query": "label_values(ceph_health_status, job)",
-        "refresh": 2,
-        "type": "query"
-      },
-      {
-        "datasource": "oceanai-prometheus",
-        "label": "instance",
-        "name": "instance",
-        "query": "label_values(ceph_health_status, instance)",
-        "refresh": 2,
-        "type": "query"
+        "refresh": 0,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },

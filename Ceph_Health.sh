@@ -17,6 +17,13 @@ sudo ceph osd crush tunables optimal
 
 # 3. clock skew detected on mon
 # 检查 mon node 的 ntp 是否开启
+# Just re-sync the clock in the affected mon, and restart the mon daemon
+sudo service ntp stop
+sudo ntpdate ntp.ubuntu.com
+sudo ntpd -gq
+sudo service ntp start
+# 接着重启 ceph-mon 服务（在所有的 mon 节点上）
+sudo systemctl restart ceph-mon.target
 
 # 3. mon cloudxxx is low on available space
 # 目录 / 下的空间不足

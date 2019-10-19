@@ -9,7 +9,7 @@
   "hideControls": false,
   "id": 11,
   "links": [],
-  "refresh": "30s",
+  "refresh": "15m",
   "rows": [
     {
       "collapse": false,
@@ -24,7 +24,7 @@
             "rgba(237, 40, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "none",
@@ -36,7 +36,7 @@
             "thresholdMarkers": true
           },
           "id": 6,
-          "interval": "$interval",
+          "interval": null,
           "links": [],
           "mappingType": 2,
           "mappingTypes": [
@@ -82,7 +82,7 @@
           },
           "targets": [
             {
-              "expr": "ceph_osd_up{osd=\"$osd\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_osd_up{osd=\"$osd\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "refId": "A",
@@ -123,7 +123,7 @@
             "rgba(237, 40, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "none",
@@ -135,7 +135,7 @@
             "thresholdMarkers": true
           },
           "id": 8,
-          "interval": "$interval",
+          "interval": null,
           "links": [],
           "mappingType": 2,
           "mappingTypes": [
@@ -181,7 +181,7 @@
           },
           "targets": [
             {
-              "expr": "ceph_osd_in{osd=\"$osd\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_osd_in{osd=\"$osd\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "refId": "A",
@@ -222,7 +222,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "none",
@@ -234,7 +234,7 @@
             "thresholdMarkers": true
           },
           "id": 10,
-          "interval": "$interval",
+          "interval": null,
           "links": [],
           "mappingType": 2,
           "mappingTypes": [
@@ -270,7 +270,7 @@
           },
           "targets": [
             {
-              "expr": "ceph_osds{job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_osds{job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "refId": "A",
@@ -307,7 +307,7 @@
       "repeatIteration": null,
       "repeatRowId": null,
       "showTitle": false,
-      "title": "OSD Status",
+      "title": "New row",
       "titleSize": "h6"
     },
     {
@@ -317,7 +317,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "decimals": 2,
           "editable": true,
           "error": false,
@@ -355,7 +355,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_osd_pgs{osd=~\"$osd\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_osd_pgs{osd=~\"$osd\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Number of PGs - {{ osd}}",
@@ -363,7 +363,7 @@
               "step": 60
             },
             {
-              "expr": "avg(ceph_osd_pgs{job=\"$export\",instance=\"$instance\"})",
+              "expr": "avg(ceph_osd_pgs{job=\"$export\"})",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Average Number of PGs in the Cluster",
@@ -431,7 +431,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(245, 54, 54, 0.9)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "format": "percent",
@@ -443,7 +443,7 @@
             "thresholdMarkers": true
           },
           "id": 7,
-          "interval": "$interval",
+          "interval": null,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -479,7 +479,7 @@
           },
           "targets": [
             {
-              "expr": "ceph_osd_utilization{osd=\"$osd\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_osd_utilization{osd=\"$osd\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -517,7 +517,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "decimals": 2,
           "editable": true,
           "error": false,
@@ -549,7 +549,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_osd_perf_apply_latency_seconds{osd=~\"$osd\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_osd_perf_apply_latency_seconds{osd=~\"$osd\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Apply Latency (s) - {{ osd }}",
@@ -557,7 +557,7 @@
               "step": 60
             },
             {
-              "expr": "ceph_osd_perf_commit_latency_seconds{osd=~\"$osd\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_osd_perf_commit_latency_seconds{osd=~\"$osd\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Commit Latency (s) - {{ osd }}",
@@ -604,7 +604,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "decimals": 2,
           "editable": true,
           "error": false,
@@ -636,7 +636,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_osd_avail_bytes{osd=~\"$osd\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_osd_avail_bytes{osd=~\"$osd\", job=\"$export\"}",
               "hide": false,
               "interval": "$interval",
               "intervalFactor": 1,
@@ -646,7 +646,7 @@
               "step": 60
             },
             {
-              "expr": "ceph_osd_used_bytes{osd=~\"$osd\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_osd_used_bytes{osd=~\"$osd\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Used - {{ osd }}",
@@ -694,7 +694,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "decimals": 5,
           "editable": true,
           "error": false,
@@ -726,7 +726,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_osd_variance{osd=~\"$osd\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_osd_variance{osd=~\"$osd\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Available - {{ osd }}",
@@ -776,7 +776,7 @@
       "repeatIteration": null,
       "repeatRowId": null,
       "showTitle": false,
-      "title": "OSD: $osd",
+      "title": "New row",
       "titleSize": "h6"
     }
   ],
@@ -789,40 +789,125 @@
   "templating": {
     "list": [
       {
+        "auto": true,
+        "auto_count": 10,
+        "auto_min": "1m",
         "current": {
           "text": "1m",
           "value": "1m"
         },
         "datasource": null,
-        "label": "interval",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Interval",
+        "multi": false,
         "name": "interval",
-        "query": "2s,5s,10s,30s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "options": [
+          {
+            "selected": false,
+            "text": "auto",
+            "value": "$__auto_interval"
+          },
+          {
+            "selected": true,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "14d",
+            "value": "14d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
         "refresh": 2,
         "type": "interval"
       },
       {
-        "datasource": "oceanai-prometheus",
+        "allValue": null,
+        "current": {
+          "text": "ceph-exporter",
+          "value": "ceph-exporter"
+        },
+        "datasource": "prometheus",
+        "hide": 0,
+        "includeAll": false,
         "label": "exporter",
+        "multi": false,
         "name": "export",
+        "options": [],
         "query": "label_values(ceph_health_status, job)",
-        "refresh": 2,
-        "type": "query"
-      },
-      {
-        "datasource": "oceanai-prometheus",
-        "label": "instance",
-        "name": "instance",
-        "query": "label_values(ceph_health_status, instance)",
-        "refresh": 2,
-        "type": "query"
-      },
-      {
-        "datasource": "oceanai-prometheus",
-        "label": "OSD",
-        "name": "osd",
-        "query": "label_values(ceph_osd_up,  osd)",
         "refresh": 1,
-        "type": "query"
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "osd.0",
+          "value": "osd.0"
+        },
+        "datasource": "prometheus",
+        "hide": 0,
+        "includeAll": false,
+        "label": "OSD",
+        "multi": false,
+        "name": "osd",
+        "options": [],
+        "query": "label_values(ceph_osd_up{job=\"$export\"},  osd)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },

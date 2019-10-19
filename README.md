@@ -21,3 +21,5 @@ monitor/：Ceph 集群监控
 needed_deb_luminous/：luminous deb，Ubuntu 16.04 LTS (Xenial Xerus)
 
 needed_deb_minic/：minic deb，Ubuntu 16.04 LTS (Xenial Xerus)
+
+ntp_deb/：ntp and ntpdate deb，Ubuntu 16.04 LTS (Xenial Xerus)

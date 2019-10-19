@@ -2,14 +2,14 @@
   "annotations": {
     "list": []
   },
-  "description": "Ceph Pools Dashboard.",
+  "description": "Ceph Pools dashboard.",
   "editable": true,
   "gnetId": 926,
   "graphTooltip": 0,
   "hideControls": false,
   "id": 12,
   "links": [],
-  "refresh": "30s",
+  "refresh": "1m",
   "rows": [
     {
       "collapse": false,
@@ -18,7 +18,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "decimals": 2,
           "editable": true,
           "error": false,
@@ -65,7 +65,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_pool_available_bytes{pool=~\"$pool\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_pool_available_bytes{pool=~\"$pool\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Avilable - {{ pool }}",
@@ -74,7 +74,7 @@
               "step": 60
             },
             {
-              "expr": "ceph_pool_used_bytes{pool=~\"$pool\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_pool_used_bytes{pool=~\"$pool\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Used - {{ pool }}",
@@ -83,7 +83,7 @@
               "step": 60
             },
             {
-              "expr": "ceph_pool_used_bytes{pool=~\"$pool\", job=\"$export\",instance=\"$instance\"} + ceph_pool_available_bytes{pool=~\"$pool\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_pool_used_bytes{pool=~\"$pool\", job=\"$export\"} + ceph_pool_available_bytes{pool=~\"$pool\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Total - {{ pool }}",
@@ -92,7 +92,7 @@
               "step": 60
             },
             {
-              "expr": "ceph_pool_raw_used_bytes{pool=~\"$pool\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_pool_raw_used_bytes{pool=~\"$pool\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Raw - {{ pool }}",
@@ -146,7 +146,7 @@
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "decimals": 2,
           "editable": true,
           "error": false,
@@ -159,7 +159,7 @@
             "thresholdMarkers": true
           },
           "id": 10,
-          "interval": "$interval",
+          "interval": null,
           "links": [],
           "mappingType": 1,
           "mappingTypes": [
@@ -195,7 +195,7 @@
           },
           "targets": [
             {
-              "expr": " ceph_pool_used_bytes{pool=\"$pool\", job=\"$export\",instance=\"$instance\"} / (ceph_pool_available_bytes{pool=\"$pool\", job=\"$export\",instance=\"$instance\"} + ceph_pool_used_bytes{pool=\"$pool\", job=\"$export\",instance=\"$instance\"})",
+              "expr": " ceph_pool_used_bytes{pool=\"$pool\", job=\"$export\"} / (ceph_pool_available_bytes{pool=\"$pool\", job=\"$export\"} + ceph_pool_used_bytes{pool=\"$pool\", job=\"$export\"})",
               "interval": "$interval",
               "intervalFactor": 1,
               "refId": "A",
@@ -230,7 +230,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "editable": true,
           "error": false,
           "fill": 1,
@@ -260,7 +260,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "ceph_pool_objects_total{pool=~\"$pool\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_pool_objects_total{pool=~\"$pool\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Objects - {{ pool }}",
@@ -268,7 +268,7 @@
               "step": 60
             },
             {
-              "expr": "ceph_pool_dirty_objects_total{pool=~\"$pool\", job=\"$export\",instance=\"$instance\"}",
+              "expr": "ceph_pool_dirty_objects_total{pool=~\"$pool\", job=\"$export\"}",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Dirty Objects - {{ pool }}",
@@ -315,7 +315,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "decimals": 2,
           "editable": true,
           "error": false,
@@ -347,7 +347,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(ceph_pool_read_total{pool=~\"$pool\", job=\"$export\",instance=\"$instance\"}[3m])",
+              "expr": "irate(ceph_pool_read_total{pool=~\"$pool\", job=\"$export\"}[3m])",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Read - {{ pool }}",
@@ -355,7 +355,7 @@
               "step": 60
             },
             {
-              "expr": "irate(ceph_pool_write_total{pool=~\"$pool\", job=\"$export\",instance=\"$instance\"}[3m])",
+              "expr": "irate(ceph_pool_write_total{pool=~\"$pool\", job=\"$export\"}[3m])",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Write - {{ pool }}",
@@ -402,7 +402,7 @@
         {
           "aliasColors": {},
           "bars": false,
-          "datasource": "oceanai-prometheus",
+          "datasource": "prometheus",
           "decimals": 2,
           "editable": true,
           "error": false,
@@ -434,7 +434,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(ceph_pool_read_bytes_total{pool=\"$pool\", job=\"$export\",instance=\"$instance\"}[3m])",
+              "expr": "irate(ceph_pool_read_bytes_total{pool=\"$pool\", job=\"$export\"}[3m])",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Read Bytes - {{ pool }}",
@@ -442,7 +442,7 @@
               "step": 60
             },
             {
-              "expr": "irate(ceph_pool_write_bytes_total{pool=\"$pool\", job=\"$export\",instance=\"$instance\"}[3m])",
+              "expr": "irate(ceph_pool_write_bytes_total{pool=\"$pool\", job=\"$export\"}[3m])",
               "interval": "$interval",
               "intervalFactor": 1,
               "legendFormat": "Written Bytes - {{ pool }}",
@@ -491,7 +491,7 @@
       "repeatIteration": null,
       "repeatRowId": null,
       "showTitle": false,
-      "title": "Pool: $pool",
+      "title": "New row",
       "titleSize": "h6"
     }
   ],
@@ -504,39 +504,125 @@
   "templating": {
     "list": [
       {
+        "auto": true,
+        "auto_count": 10,
+        "auto_min": "1m",
         "current": {
           "text": "1m",
           "value": "1m"
         },
-        "label": "interval",
+        "datasource": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Interval",
+        "multi": false,
         "name": "interval",
-        "query": "2s,5s,10s,30s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "options": [
+          {
+            "selected": false,
+            "text": "auto",
+            "value": "$__auto_interval"
+          },
+          {
+            "selected": true,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "14d",
+            "value": "14d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
         "refresh": 2,
         "type": "interval"
       },
       {
-        "datasource": "oceanai-prometheus",
+        "allValue": null,
+        "current": {
+          "text": "ocata-ceph",
+          "value": "ocata-ceph"
+        },
+        "datasource": "prometheus",
+        "hide": 0,
+        "includeAll": false,
         "label": "exporter",
+        "multi": false,
         "name": "export",
+        "options": [],
         "query": "label_values(ceph_health_status, job)",
-        "refresh": 2,
-        "type": "query"
-      },
-      {
-        "datasource": "oceanai-prometheus",
-        "label": "instance",
-        "name": "instance",
-        "query": "label_values(ceph_health_status, instance)",
-        "refresh": 2,
-        "type": "query"
-      },
-      {
-        "datasource": "oceanai-prometheus",
-        "label": "pool",
-        "name": "pool",
-        "query": "label_values(ceph_pool_objects_total, pool)",
         "refresh": 1,
-        "type": "query"
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "instances",
+          "value": "instances"
+        },
+        "datasource": "prometheus",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Pool",
+        "multi": false,
+        "name": "pool",
+        "options": [],
+        "query": "label_values(ceph_pool_objects_total{job=\"$export\"}, pool)",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },
