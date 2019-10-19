@@ -8,7 +8,7 @@
 
 存放的是 grafana dashboard 模版
 
-### 新增一个 exporter（如 cloud02）
+### 新增一个 exporter（如 cloud02，必须是 mon node）
 
     cp exporter-sed.yml exporter-cloud02.yml
     sed -i -e "s/--hostname--/cloud02/g" exporter-cloud02.yml

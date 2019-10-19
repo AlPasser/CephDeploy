@@ -109,9 +109,11 @@ sudo rados -p mytest ls
 sudo ceph osd map mytest test-object-1
 sudo rados rm test-object-1 --pool=mytest
 sudo ceph osd pool rm mytest
-# pool 不允许被删除时，需在 mon 节点的 /etc/ceph/ceph.conf 文件中添加以下内容
+# pool 不允许被删除时，需在 ceph.conf 文件中添加以下内容
 [mon] 
 mon allow pool delete = true
+# 将修改后的 ceph.conf 推送到各个节点
+ceph-deploy --overwrite-conf config push cloud08 cloud04 cloud-XIII
 # 接着重启 ceph-mon 服务（在所有的 mon 节点上）
 sudo systemctl restart ceph-mon.target
 # 然后执行 pool 的删除命令

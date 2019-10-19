@@ -423,7 +423,7 @@ kubectl delete -f cephfs-pvc-test.yaml
 
 # ceph fs 挂载
 # 使用 ceph-fuse 挂载
-# sudo ceph-fuse -m mon-ip-addr:mon-port mount-dir
+# sudo ceph-fuse -m mon-ip-addr:mon-port mount-point
 sudo ceph-fuse -m 192.168.1.8:6789 fsmount
 
 

@@ -28,6 +28,14 @@ ceph-deploy mon add cloudxxx
 mon_host = 192.168.1.8,192.168.1.13,192.168.1.4
 # 然后再将修改后的 ceph.conf 推送到各个节点
 ceph-deploy --overwrite-conf config push cloud08 cloud04 cloud-XIII
+# 降低警告阈值（该方法有用）
+# 在 ceph.conf 文件中添加以下内容
+[mon] 
+mon_data_avail_warn = 15
+# 将修改后的 ceph.conf 推送到各个节点
+ceph-deploy --overwrite-conf config push cloud08 cloud04 oceanai07
+# 接着重启 ceph-mon 服务（在所有的 mon 节点上）
+sudo systemctl restart ceph-mon.target
 
 # HEALTH_ERR
 
