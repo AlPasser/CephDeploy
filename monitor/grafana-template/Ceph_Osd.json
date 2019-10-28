@@ -321,7 +321,7 @@
           "decimals": 2,
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "id": 5,
           "interval": "$interval",
@@ -343,15 +343,8 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "/^Average.*/",
-              "fill": 0,
-              "stack": false
-            }
-          ],
           "span": 10,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
@@ -471,12 +464,6 @@
             }
           ],
           "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": true
-          },
           "targets": [
             {
               "expr": "ceph_osd_utilization{osd=\"$osd\", job=\"$export\",instance=\"$instance\"}",
@@ -521,7 +508,7 @@
           "decimals": 2,
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "id": 4,
           "interval": "$interval",
@@ -535,13 +522,13 @@
             "total": false,
             "values": true
           },
-          "lines": false,
+          "lines": true,
           "linewidth": 2,
           "links": [],
           "nullPointMode": "connected",
           "percentage": false,
           "pointradius": 2,
-          "points": true,
+          "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
           "span": 4,
@@ -608,7 +595,7 @@
           "decimals": 2,
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "id": 2,
           "interval": "$interval",
@@ -632,7 +619,7 @@
           "renderer": "flot",
           "seriesOverrides": [],
           "span": 4,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
@@ -698,7 +685,7 @@
           "decimals": 5,
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "id": 9,
           "interval": "$interval",
@@ -712,13 +699,13 @@
             "total": false,
             "values": true
           },
-          "lines": false,
+          "lines": true,
           "linewidth": 2,
           "links": [],
           "nullPointMode": "connected",
           "percentage": false,
           "pointradius": 2,
-          "points": true,
+          "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
           "span": 4,

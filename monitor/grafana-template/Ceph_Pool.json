@@ -22,7 +22,7 @@
           "decimals": 2,
           "editable": true,
           "error": false,
-          "fill": 4,
+          "fill": 2,
           "grid": {},
           "height": "",
           "id": 2,
@@ -39,29 +39,15 @@
             "values": true
           },
           "lines": true,
-          "linewidth": 0,
+          "linewidth": 2,
           "links": [],
           "nullPointMode": "connected",
           "percentage": false,
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "/^Total.*$/",
-              "fill": 0,
-              "linewidth": 4,
-              "stack": false
-            },
-            {
-              "alias": "/^Raw.*$/",
-              "color": "#BF1B00",
-              "fill": 0,
-              "linewidth": 4
-            }
-          ],
           "span": 10,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
@@ -233,7 +219,7 @@
           "datasource": "oceanai-prometheus",
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "height": "",
           "id": 7,
@@ -319,7 +305,7 @@
           "decimals": 2,
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "id": 4,
           "interval": "$interval",
@@ -343,7 +329,7 @@
           "renderer": "flot",
           "seriesOverrides": [],
           "span": 6,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
@@ -406,7 +392,7 @@
           "decimals": 2,
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "id": 5,
           "interval": "$interval",
@@ -430,7 +416,7 @@
           "renderer": "flot",
           "seriesOverrides": [],
           "span": 12,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {

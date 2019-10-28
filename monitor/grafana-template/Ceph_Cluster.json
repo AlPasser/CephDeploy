@@ -332,7 +332,7 @@
             }
           ],
           "thresholds": "0.025,0.1",
-          "title": "Cluster Capacity",
+          "title": "Total Capacity",
           "transparent": false,
           "type": "singlestat",
           "valueFontSize": "100%",
@@ -508,7 +508,7 @@
       "repeatIteration": null,
       "repeatRowId": null,
       "showTitle": false,
-      "title": "Cluster Overview",
+      "title": "Cluster Status",
       "titleSize": "h6"
     },
     {
@@ -893,7 +893,7 @@
             }
           ],
           "thresholds": "250,300",
-          "title": "Agerage PGs per OSD",
+          "title": "Average PGs per OSD",
           "type": "singlestat",
           "valueFontSize": "80%",
           "valueMaps": [
@@ -971,7 +971,7 @@
             }
           ],
           "thresholds": "0.01,0.05",
-          "title": "Agerage OSD Apply Latency",
+          "title": "Average OSD Apply Latency",
           "type": "singlestat",
           "valueFontSize": "80%",
           "valueMaps": [
@@ -979,6 +979,11 @@
               "op": "=",
               "text": "N/A",
               "value": "null"
+            },
+            {
+              "op": "=",
+              "text": "0 μs",
+              "value": "0"
             }
           ],
           "valueName": "avg"
@@ -1049,10 +1054,21 @@
             }
           ],
           "thresholds": "0.01,0.05",
-          "title": "Agerage OSD Commit Latency",
+          "title": "Average OSD Commit Latency",
           "type": "singlestat",
           "valueFontSize": "80%",
-          "valueMaps": [],
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            },
+            {
+              "op": "=",
+              "text": "0 μs",
+              "value": "0"
+            }
+          ],
           "valueName": "avg"
         },
         {
@@ -1140,7 +1156,7 @@
       "repeatIteration": null,
       "repeatRowId": null,
       "showTitle": false,
-      "title": "OSDs Overview",
+      "title": "OSDs Status",
       "titleSize": "h6"
     },
     {
@@ -1160,7 +1176,7 @@
           "datasource": "oceanai-prometheus",
           "editable": true,
           "error": false,
-          "fill": 3,
+          "fill": 2,
           "grid": {},
           "height": "300",
           "id": 1,
@@ -1176,7 +1192,7 @@
             "values": true
           },
           "lines": true,
-          "linewidth": 0,
+          "linewidth": 2,
           "links": [],
           "minSpan": null,
           "nullPointMode": "connected",
@@ -1184,16 +1200,8 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "Total Capacity",
-              "fill": 0,
-              "linewidth": 3,
-              "stack": false
-            }
-          ],
           "span": 4,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
@@ -1270,7 +1278,7 @@
           "decimals": 0,
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "height": "300",
           "id": 3,
@@ -1286,7 +1294,7 @@
             "values": true
           },
           "lines": true,
-          "linewidth": 1,
+          "linewidth": 2,
           "links": [],
           "minSpan": null,
           "nullPointMode": "connected",
@@ -1296,7 +1304,7 @@
           "renderer": "flot",
           "seriesOverrides": [],
           "span": 4,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
@@ -1358,7 +1366,7 @@
           "datasource": "oceanai-prometheus",
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "height": "300",
           "id": 7,
@@ -1374,7 +1382,7 @@
             "values": true
           },
           "lines": true,
-          "linewidth": 1,
+          "linewidth": 2,
           "links": [],
           "nullPointMode": "connected",
           "percentage": false,
@@ -1383,7 +1391,7 @@
           "renderer": "flot",
           "seriesOverrides": [],
           "span": 4,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
@@ -1444,7 +1452,7 @@
       "repeatIteration": null,
       "repeatRowId": null,
       "showTitle": true,
-      "title": "CLUSTER",
+      "title": "Cluster Load",
       "titleSize": "h6"
     },
     {
@@ -1457,7 +1465,7 @@
           "datasource": "oceanai-prometheus",
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "id": 18,
           "legend": {
@@ -1479,14 +1487,8 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "/^Total.*$/",
-              "stack": false
-            }
-          ],
           "span": 12,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
@@ -1556,7 +1558,7 @@
           "datasource": "oceanai-prometheus",
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "id": 19,
           "legend": {
@@ -1578,14 +1580,8 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "/^Total.*$/",
-              "stack": false
-            }
-          ],
           "span": 6,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
@@ -1679,7 +1675,7 @@
           "datasource": "oceanai-prometheus",
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "id": 20,
           "legend": {
@@ -1701,14 +1697,8 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "/^Total.*$/",
-              "stack": false
-            }
-          ],
           "span": 6,
-          "stack": true,
+          "stack": false,
           "steppedLine": false,
           "targets": [
             {
@@ -1785,7 +1775,7 @@
       "repeatIteration": null,
       "repeatRowId": null,
       "showTitle": false,
-      "title": "PGs",
+      "title": "PGs View",
       "titleSize": "h6"
     },
     {
@@ -1798,7 +1788,7 @@
           "datasource": "oceanai-prometheus",
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "id": 15,
           "legend": {
@@ -1874,7 +1864,7 @@
           "datasource": "oceanai-prometheus",
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "id": 16,
           "legend": {
@@ -1955,7 +1945,7 @@
           "datasource": "oceanai-prometheus",
           "editable": true,
           "error": false,
-          "fill": 1,
+          "fill": 2,
           "grid": {},
           "id": 17,
           "legend": {

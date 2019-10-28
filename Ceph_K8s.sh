@@ -343,7 +343,7 @@ kubectl get pod -n kube-system
 
 # sc
 # 在 ceph 的 mon 或 admin 节点上查看 key
-ceph auth get-key client.admin
+sudo ceph auth get-key client.admin
 # 创建 admin secret
 # CEPH_ADMIN_SECRET 替换为 client.admin 获取到的 key
 export CEPH_ADMIN_SECRET='AQBBAnRbSiSOFxAAEZXNMzYV6hsceccYLhzdWw=='
