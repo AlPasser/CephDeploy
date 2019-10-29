@@ -128,17 +128,18 @@
           "colorBackground": false,
           "colorValue": true,
           "colors": [
-            "rgba(245, 54, 54, 0.9)",
+            "rgba(50, 172, 45, 0.97)",
             "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
+            "rgba(245, 54, 54, 0.9)"
           ],
+          "thresholds": "60,80",
           "datasource": "oceanai-prometheus",
           "decimals": 2,
           "editable": true,
           "error": false,
           "format": "percentunit",
           "gauge": {
-            "maxValue": 1,
+            "maxValue": 100,
             "minValue": 0,
             "show": true,
             "thresholdLabels": false,
@@ -188,7 +189,6 @@
               "step": 60
             }
           ],
-          "thresholds": "",
           "title": "Usage",
           "type": "singlestat",
           "valueFontSize": "80%",
