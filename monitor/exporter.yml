@@ -1,21 +1,22 @@
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deployment
 metadata:
-  name: ceph-exporter---hostname--
+  name: ceph-exporter
   namespace: monitoring
 spec:
   selector:
     matchLabels:
-      app: ceph-exporter---hostname--
+      app: ceph-exporter
+  replicas: 1
   template:
     metadata:
       labels:
-        app: ceph-exporter---hostname--
+        app: ceph-exporter
     spec:
       containers:
       - image: harbor.oceanai.com.cn/k8s_ceph/ceph_exporter:191016
         imagePullPolicy: IfNotPresent
-        name: ceph-exporter---hostname--
+        name: ceph-exporter
         resources:
           limits:
             cpu: 100m
@@ -28,7 +29,7 @@ spec:
           name: ceph-conf
       hostNetwork: true
       nodeSelector:
-        kubernetes.io/hostname: --hostname--  # Ceph 宿主机
+        ceph-osd: ceph-osd
       volumes:
       - hostPath:
           path: /etc/ceph
@@ -45,8 +46,8 @@ metadata:
     component: "node-exporter"
     heritage: Tiller
     release: monitor
-    k8s-app: ceph-exporter---hostname--
-  name: ceph-exporter---hostname--
+    k8s-app: ceph-exporter
+  name: ceph-exporter
   namespace: monitoring
 spec:
   clusterIP: None
@@ -56,5 +57,5 @@ spec:
     protocol: TCP
     targetPort: 9128
   selector:
-    app: ceph-exporter---hostname--
+    app: ceph-exporter
   type: ClusterIP
