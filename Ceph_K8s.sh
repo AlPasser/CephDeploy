@@ -114,7 +114,8 @@ kubectl get pod -n kube-system
 # 创建 osd pool，在 ceph 的 mon 或者 admin 节点上运行
 # pg 的设置参照公式：Total PGs = ((Total_number_of_OSD * 100) / max_replication_count) / pool_count
 # 取靠近结算结果的 2 的 N 次方的值。比如总共 OSD 数量是 2，复制份数 3 ，pool 数量是 1，那么按上述公式计算出的结果是 66.66，取跟它接近的 2 的 N 次方是 64，那么每个 pool 分配的 PG 数量就是 64。
-sudo ceph osd pool create kube 64
+sudo ceph osd pool create kube 128
+sudo ceph osd pool set kube size 2
 sudo ceph osd pool ls
 # 创建 k8s 访问 ceph 的用户，在 ceph 的 mon 或者 admin 节点上运行
 sudo ceph auth get-or-create client.kube mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=kube' -o ceph.client.kube.keyring
@@ -232,7 +233,9 @@ sudo ceph osd crush reweight-all
 # 以下操作在 ceph 的 mon 或者 admin 节点上进行
 # CephFS 需要使用两个 Pool 来分别存储数据和元数据
 sudo ceph osd pool create fs_data 128
-sudo ceph osd pool create fs_metadata 128
+sudo ceph osd pool create fs_metadata 8
+sudo ceph osd pool set fs_data size 2
+sudo ceph osd pool set fs_metadata size 2
 sudo ceph osd lspools
 # 创建一个 CephFS
 sudo ceph fs new cephfs fs_metadata fs_data
@@ -426,5 +429,19 @@ kubectl delete -f cephfs-pvc-test.yaml
 # sudo ceph-fuse -m mon-ip-addr:mon-port mount-point
 sudo ceph-fuse -m 192.168.1.8:6789 fsmount
 
+# 删除 cephfs
+sudo systemctl stop ceph-mds@$HOSTNAME
+sudo systemctl status ceph-mds@$HOSTNAME
+sudo ceph fs ls
+sudo ceph mds stat
+sudo ceph mon dump
+sudo ceph mds fail 0
+sudo ceph fs rm cephfs --yes-i-really-mean-it
+sudo ceph osd pool delete fs_metadata fs_metadata --yes-i-really-really-mean-it
+sudo ceph osd pool delete fs_data fs_data --yes-i-really-really-mean-it
+sudo ceph mds stat
+sudo systemctl start ceph-mds@$HOSTNAME
+sudo systemctl status ceph-mds@$HOSTNAME
+sudo ceph mds stat
 
 
