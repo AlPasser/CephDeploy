@@ -105,7 +105,7 @@ spec:
         ceph-osd: ceph-osd
 EOF
 # 以上 docker 镜像 save 在 rbd-provisioner.tar 中
-# rbd-provisioner 暂时先只放在 lable "ceph-osd: ceph-osd" 的机子上（ceph node，装有 osd），还未测试放其他节点上是否会有问题（更新：理论推断是会有问题的）
+# rbd-provisioner 暂时先只放在 lable "ceph-osd: ceph-osd" 的机子上（ceph node，装有 osd），还未测试放其他节点上是否会有问题（理论上只要跑在装有 ceph-common 的机子上就不会有问题）
 kubectl apply -f external-storage-rbd-provisioner.yaml
 kubectl get pod -n kube-system
 
@@ -116,8 +116,9 @@ kubectl get pod -n kube-system
 # 取靠近结算结果的 2 的 N 次方的值。比如总共 OSD 数量是 2，复制份数 3 ，pool 数量是 1，那么按上述公式计算出的结果是 66.66，取跟它接近的 2 的 N 次方是 64，那么每个 pool 分配的 PG 数量就是 64。
 sudo ceph osd pool create kube 128
 sudo ceph osd pool set kube size 2
+sudo ceph osd pool application enable kube rbd
 sudo ceph osd pool ls
-# 创建 k8s 访问 ceph 的用户，在 ceph 的 mon 或者 admin 节点上运行
+# 创建 k8s 访问 ceph 的用户（用户是针对 pool 名的，即 pool 先删后添，只要名字没变，用户仍能访问），在 ceph 的 mon 或者 admin 节点上运行
 sudo ceph auth get-or-create client.kube mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=kube' -o ceph.client.kube.keyring
 # 查看 key，在 ceph 的 mon 或者 admin 节点上运行
 sudo ceph auth get-key client.admin
@@ -232,8 +233,8 @@ sudo ceph osd crush reweight-all
 
 # 以下操作在 ceph 的 mon 或者 admin 节点上进行
 # CephFS 需要使用两个 Pool 来分别存储数据和元数据
-sudo ceph osd pool create fs_data 128
-sudo ceph osd pool create fs_metadata 8
+sudo ceph osd pool create fs_data 16
+sudo ceph osd pool create fs_metadata 4
 sudo ceph osd pool set fs_data size 2
 sudo ceph osd pool set fs_metadata size 2
 sudo ceph osd lspools
@@ -443,5 +444,17 @@ sudo ceph mds stat
 sudo systemctl start ceph-mds@$HOSTNAME
 sudo systemctl status ceph-mds@$HOSTNAME
 sudo ceph mds stat
+
+# 确定 pg_num，官方建议：https://ceph.com/pgcalc/
+# 1. ceph rbd
+# Target PGs per OSD 最好设为 OSD# 值
+# 2. cephfs
+# Target PGs per OSD 最好大点（如 100），且该值的降低不会带来性能的提升，过小还可能会使性能糟糕
+# data:metadata 1:19
+# 3. 一个实例
+# Pool Name, Size, OSD#, %Data, Target PGs per OSD, Suggested PG Count
+fs_metadata, 2, 3, 2.00, 100, 4
+fs_data, 2, 3, 38.00, 100, 64
+kube, 2, 3, 60.00, 3, 4
 
 
