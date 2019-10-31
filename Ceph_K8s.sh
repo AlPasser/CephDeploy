@@ -114,7 +114,7 @@ kubectl get pod -n kube-system
 # 创建 osd pool，在 ceph 的 mon 或者 admin 节点上运行
 # pg 的设置参照公式：Total PGs = ((Total_number_of_OSD * 100) / max_replication_count) / pool_count
 # 取靠近结算结果的 2 的 N 次方的值。比如总共 OSD 数量是 2，复制份数 3 ，pool 数量是 1，那么按上述公式计算出的结果是 66.66，取跟它接近的 2 的 N 次方是 64，那么每个 pool 分配的 PG 数量就是 64。
-sudo ceph osd pool create kube 128
+sudo ceph osd pool create kube 4
 sudo ceph osd pool set kube size 2
 sudo ceph osd pool application enable kube rbd
 sudo ceph osd pool ls
@@ -233,7 +233,7 @@ sudo ceph osd crush reweight-all
 
 # 以下操作在 ceph 的 mon 或者 admin 节点上进行
 # CephFS 需要使用两个 Pool 来分别存储数据和元数据
-sudo ceph osd pool create fs_data 16
+sudo ceph osd pool create fs_data 64
 sudo ceph osd pool create fs_metadata 4
 sudo ceph osd pool set fs_data size 2
 sudo ceph osd pool set fs_metadata size 2
