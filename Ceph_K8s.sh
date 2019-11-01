@@ -451,10 +451,24 @@ sudo ceph mds stat
 # 2. cephfs
 # Target PGs per OSD 最好大点（如 100），且该值的降低不会带来性能的提升，过小还可能会使性能糟糕
 # data:metadata 1:19
+# pg_num 与 OSD# 差不多大的话，可能会因为 CRUSH weight 的原因，多个 pg 被分在同一个 OSD 上，导致该 OSD 的负载变高
 # 3. 一个实例
 # Pool Name, Size, OSD#, %Data, Target PGs per OSD, Suggested PG Count
 fs_metadata, 2, 3, 2.00, 100, 4
 fs_data, 2, 3, 38.00, 100, 64
 kube, 2, 3, 60.00, 3, 4
+
+# 如果一个 OSD 因其存储空间较大而默认有较大的权重，但它的硬盘的读写速率较低，这会导致 ceph 存储的整体性能下降
+# 查看硬盘信息
+sudo hdparm -i /dev/sda1
+# 查看硬盘的读速度（专业的）
+sudo hdparm -Tt /dev/sda1
+sudo hdparm -Tt /dev/mapper/vg_data-lv_ceph
+# 查看硬盘的写速度（非专业的）
+sudo time dd if=/dev/sda1 of=/test.dbf bs=8k count=300000
+sudo time dd if=/dev/mapper/vg_data-lv_ceph of=/test.dbf bs=8k count=300000
+# 调整 OSD 权重
+sudo ceph osd crush reweight osd.3 0.51904
+
 
 
