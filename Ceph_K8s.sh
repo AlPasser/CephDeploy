@@ -225,6 +225,9 @@ ssh xxx sudo ceph auth get client.kube -o /etc/ceph/ceph.client.kube.keyring
 sudo ceph osd crush tunables legacy
 sudo ceph osd crush reweight-all
 # 也可以将 kernel 升级到 4.5 以上来解决此问题
+# 3、fail to check rbd image status with: (exit status 1), rbd output: (rbd: couldn't connect to the cluster!)
+# 在 storageclass-ceph-rbd.yaml 中设置
+fsType: ext4
 
 # 以上的 k8s ceph rbd 所持久化的数据目前只能在 k8s Pod 中查看，查看方法见 get_pvc_data 文件夹
 

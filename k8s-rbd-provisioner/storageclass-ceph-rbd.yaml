@@ -12,5 +12,6 @@ parameters:
   userId: kube
   userSecretName: ceph-user-secret
   userSecretNamespace: kube-system
+  fsType: ext4
   imageFormat: "2"
   imageFeatures: "layering"
